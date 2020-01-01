@@ -1,0 +1,55 @@
+#modal-kostaddnewsales{
+	.modal-body{
+		.description{
+			text-align: center;
+			.price{
+				font-weight: bold;
+				color: #507;
+			}
+		}
+		.inputs{
+			background-color: #f0fff8;
+			padding: 5px;
+			border: 1px solid #5a9;
+			margin: 10px 0;
+			.input{
+				padding: 2px 4px;
+				input{
+					border: 1px solid #507;
+					padding: 2px 5px;
+					border-radius: 3px;
+					font-size: inherit;
+					width: 100%;
+					text-align: right;
+				}
+			}
+			.customers{
+				font-size: 95%;
+				border: 1px solid #aaa;
+				border-radius: 6px;
+				background-color: white;
+				padding: 2px 4px 4px;
+				margin-top: 10px;
+				.bootstrap-select{
+					font-size: inherit;
+					width: 100%;
+					border: 1px solid #507;
+					border-radius: 3px;
+				}
+			}
+		}
+		.actions{
+			text-align: center;
+			padding: 5px;
+		}
+	}
+	.modal-footer{
+		background-color: #eef8ff;
+		.info{
+			text-align: center;
+			width: 100%;
+			line-height: 1.2;
+			font-size: 80%;
+		}
+	}
+}

@@ -1,0 +1,16 @@
+.home{
+	font-family: "Signika";
+	
+	.item{
+		margin: 0;
+		padding: 20px 60px;
+		border-bottom: 1px solid #aaa;
+		.table{
+			font-size: 13px;
+		}
+		.title{
+			font-size: 18px;
+			font-weight: bold;
+		}
+	}
+}

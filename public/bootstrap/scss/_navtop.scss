@@ -1,0 +1,27 @@
+// Base class
+//
+// Kickstart any navigation component with a set of style resets. Works with
+// `<nav>`s or `<ul>`s.
+
+.most-top{
+  height:3px; 
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  &.blue{
+    background: $blue-clr;
+  }
+  &.yellow{
+    background: $yellow-clr;
+  }
+  &.orange{
+    background: $orange-clr;
+  }
+  &.green{
+    background: $green-clr;
+  }
+  &.purple{
+    background: $purple-clr;
+  }
+}

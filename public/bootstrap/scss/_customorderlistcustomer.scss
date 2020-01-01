@@ -1,0 +1,59 @@
+.orderlist{
+	.orderlist-header{
+		font-size: 24px;
+		color: #777;
+		font-family: "Amaranth";
+	}
+	.ordersublist{
+		list-style: none;
+	    position: relative;
+	    display: flex;
+	    flex-wrap: wrap;
+	    border-bottom: 1px solid #ddd;
+	    width: 100%;
+	    padding: 5px 0 20px 0;
+	    li{
+	    	padding: 0;
+	    	border: 1px solid #eee;
+	    	width: 25%;
+	    	text-align: center;
+	    	background-color: #fff;
+	    	&:hover{
+	    		cursor: pointer;
+	    		span.sublist-title{
+	    			color: $lightmagenta-clr;
+	    		}
+	    	}
+	    	a{
+	    		display: block;
+	    		padding: 15px 0;
+	    		color: black;
+	    		&:hover{
+	    			text-decoration: none;
+	    		}
+	    	}
+	    	.list-image{
+	    		display: inline-block;
+	    		width: 60%;
+	    	}
+	    	.list-image-addon{
+	    		display: inline-block;
+	    		width: 15%;
+	    		img{
+	    			width: 100%;
+	    		}
+	    	}
+	    	span.sublist-title{
+	    		display: block;
+	    		font-family: "Magra";
+	    	}
+	    	span.sublist-detail{
+	    		display: block;
+	    		font-family: "Signika";
+	    		line-height: 1.2;
+	    		color: #a55;
+	    		font-size: 80%;
+	    	}
+	    }
+	}
+}

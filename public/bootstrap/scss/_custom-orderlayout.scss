@@ -1,0 +1,18 @@
+.order-wrapper{
+	display: flex;
+	width: 100%;
+	padding: 20px 60px;
+	display: inline-flex;
+	.order-description-wrapper{
+		width: 25%;
+		padding: 0 5px;
+	}
+	.order-content-wrapper{
+		width: 60%;
+		padding: 0 5px;
+	}
+	.order-summary-wrapper{
+		width: 40%;
+		padding: 0 5px;
+	}
+}

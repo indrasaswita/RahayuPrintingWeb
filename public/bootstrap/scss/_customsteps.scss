@@ -1,0 +1,79 @@
+
+
+.step-purple{
+	background-color: $purple-clr;
+	display: inline-block;
+	width: 100%;
+	vertical-align: middle;
+	border-radius: 6px;
+	margin: 20px 0;
+	.step-content{
+		//background-color: $orange-clr;
+		position:absolute;
+		width:100%;
+		display:block;
+		padding: 7px 0;
+		text-align:center;
+		color:white;
+		font-weight: bold;
+		z-index: 0;
+	}
+	.btn{
+		z-index: 1;
+		&:hover{
+			background-color: transparent;
+			border: 1px solid transparent;
+			color: rgba(255, 255, 255, 0.85);
+		}
+	}
+	.step-next.btn{
+		min-height:38px;
+	}
+	.step-next.btn::after{
+		border-left: 19px solid #fff;
+		border-top: 19px solid transparent;
+		border-bottom: 19px solid transparent;
+		content: "\0020";
+		overflow: hidden; 
+		position: absolute;
+		left: 2px;
+		top:-1px;
+		z-index:1;
+	}
+	.step-next.btn::before{
+		border-left: 16px solid $purple-clr;
+		border-top: 20px solid transparent;
+		border-bottom: 20px solid transparent;
+		content: "\0020";
+		overflow: hidden; 
+		position: absolute;
+		left: 0px;
+		top:-2px;
+		z-index:2;
+	}
+	.step-prev.btn{
+		min-height:38px;
+	}
+	.step-prev.btn::after{
+		border-right: 16px solid $purple-clr;
+		border-top: 20px solid transparent;
+		border-bottom: 20px solid transparent;
+		content: "\0020";
+		overflow: hidden; 
+		position: absolute;
+		right: -2px;
+		top:-2px;
+		z-index:2;
+	}
+	.step-prev.btn::before{
+		border-right: 19px solid #fff;
+		border-top: 19px solid transparent;
+		border-bottom: 19px solid transparent;
+		content: "\0020";
+		overflow: hidden; 
+		position: absolute;
+		right: 0px;
+		top:-1px;
+		z-index:1;
+	}
+}

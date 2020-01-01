@@ -1,0 +1,24 @@
+@mixin link-variant($hover, $color)
+{
+	color:$color;
+	&:hover{
+		color:$hover;
+	}
+}
+
+.a-purple
+{
+	@include link-variant($purple-clr, #777);
+}
+.a-darkgreen
+{
+	@include link-variant($darkgreen-clr, #777);
+}
+.a-darkgreen-inverse
+{
+	@include link-variant(#777, $darkgreen-clr);
+}
+.a-orange-inverse
+{
+	@include link-variant(#777, $orange-clr);
+}

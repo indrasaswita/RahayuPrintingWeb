@@ -1,0 +1,103 @@
+.table-bordered-purple{
+	thead {
+		background-color:$purple-clr;
+		color:white;
+		th{
+			border:1px $purple-clr solid;
+		}
+	}
+	tbody{
+		background-color:white;
+		td{
+			border:1px $purple-clr solid;
+		}
+	}
+}
+
+$header-clr1: #90f;
+$header-clr2: #509;
+$detail-clr1: #fdf;
+$detail-clr2: #dbf;
+
+@mixin table-variant($background, $color)
+{
+	thead{
+		background-color: $background !important;
+		th{
+			color: $color;
+		}
+	}
+}
+
+.table-green{
+	@include table-variant($darkgreen-clr, white);
+}
+.table-orange{
+	@include table-variant($orange-clr, white);
+}
+.table-darkorange{
+	@include table-variant($darkorange-clr, white);
+}
+
+.table-custom-allsales{
+	&>thead tr{
+		background: $header-clr2;
+	    background: -webkit-linear-gradient($header-clr1, $header-clr2);
+	    background: -o-linear-gradient($header-clr1, $header-clr2);
+	    background: -moz-linear-gradient($header-clr1, $header-clr2);
+	    background: linear-gradient($header-clr1, $header-clr2);
+	    color: white;
+		th{
+			vertical-align:middle !important;
+		}
+	}
+	&>tbody{
+		color:black;
+		.bank-list{
+			border: 2px solid $purple-clr;
+			border-radius:6px;
+			padding: 15px;
+			ul{
+				margin: 0 20px 0 -25px;
+    			display: flex;
+				li{
+					font-size: 20px;
+				    list-style: none;
+				    margin: 0;
+				    width: 25%;
+				    float: left;
+					a{
+						text-decoration:none;
+					}
+					a.active{
+						font-weight: bold;
+						color: $purple-clr;
+					}
+				}
+			}
+		}
+		button.btn-secondary:hover{
+			background: #fff;
+			color: $purple-clr;
+			.glyphicon{
+				color: $purple-clr;
+			}
+		}
+		tr.content-header{
+			background: $detail-clr2;
+		    background: -webkit-linear-gradient($detail-clr1, $detail-clr2);
+		    background: -o-linear-gradient($detail-clr1, $detail-clr2);
+		    background: -moz-linear-gradient($detail-clr1, $detail-clr2);
+		    background: linear-gradient($detail-clr1, $detail-clr2);
+			border-top: 5px white solid;
+	    }
+	    tr.content-detail > td > .detail{
+	    	border: 2px dashed $lightmagenta-clr;
+	    	border-radius: 6px;
+	    	padding: 5px 10px;
+	    }
+		.table td{
+			vertical-align:top !important;
+		}
+	}
+}

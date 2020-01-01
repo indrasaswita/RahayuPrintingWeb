@@ -1,0 +1,19 @@
+{
+  "name": "rahayudg",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "watchify app.js -o script.js -v",
+    "build": "uglifyjs script.js -cm > script.min.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-cookies": "^1.5.8",
+    "angular-resource": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "uglify-js": "^2.7.2",
+    "watchify": "^3.7.0"
+  }
+}
