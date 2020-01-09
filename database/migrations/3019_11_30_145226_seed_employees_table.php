@@ -14,7 +14,7 @@ class SeedEmployeesTable extends Migration
 	public function up()
 	{
 		DB::unprepared("
-			INSERT INTO employees VALUES ('1', '1', 'Indra Saswita', 'indra', '', '081315519889', null, null, null, null, now(), null);
+			INSERT INTO employees VALUES ('1', '1', 'Theoooooo', 'theo', '".Hash::make('theo')."', '081315519889', null, null, null, null, now(), null);
 			INSERT INTO employees VALUES ('2', '2', 'Widya Saswita', 'widya', '', '082113889889', null, null, null, null, now(), null);
 			INSERT INTO employees VALUES ('3', '2', 'Yuni Saswita', 'lingling', '', '081808031889', null, null, null, null, now(), null);
 			INSERT INTO employees VALUES ('4', '2', 'Chandra Togel', 'togel', '', '', null, null, null, null, now(), null);

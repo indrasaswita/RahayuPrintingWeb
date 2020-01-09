@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+
 	protected $fillable = ['customertypeID', 'companyID', 'addressID', 'name', 'phone', 'phone2', 'phone3', 'email', 'cardnumber', 'cardUID'];
 	protected $guarded = ['id'];
 	protected $dates = ['created_at', 'updated_at'];

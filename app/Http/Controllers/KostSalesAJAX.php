@@ -20,6 +20,8 @@ class KostSalesAJAX extends Controller
 	}
 
 	public function addnew(Request $request, $roomid){
+
+		return "test";
 		$data = $request->all();
 
 		$salesheader = new Kostsalesheader();
