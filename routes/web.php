@@ -25,4 +25,16 @@ Route::get('removeCart', 'OrderController@removeAllCart');
 
 Route::post('AJAX/login', 'UserloginController@login');
 Route::get('AJAX/kost/salesheader/{roomid}/getlast', 'KostSalesAJAX@getlastbyroom');
-Route::post('AJAX/kost/salesheader/{roomid}/addnew', 'KostSalesAJAX@addnew');
+Route::get('AJAX/kost/salesheader/{roomid}/addnew', 'KostSalesAJAX@addnew');
+
+Route::get('AJAX/customertypes', 'CustomertypeAJAX@getall');
+Route::get('AJAX/companies', 'CompanyAJAX@getall');
+Route::get('AJAX/addresses', 'AddressAJAX@getall');
+
+
+//customer_test
+Route::post('AJAX/customer/store','AdmCustomerAJAX@addnewcustomer');
+Route::post('AJAX/customer/update','AdmCustomerAJAX@updatecustomer');
+Route::post('AJAX/customer/delete','AdmCustomerAJAX@deletecustomer');
+Route::get('master/customer', 'AdmCustomerController@index');
+

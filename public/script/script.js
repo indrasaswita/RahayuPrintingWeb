@@ -24,6 +24,9 @@ require("./controllers/pages.dashboard")(app);
 require("./controllers/pages.orders.order-index")(app);
 require("./controllers/kosts.index")(app);
 require("./controllers/kosts.newsales")(app);
+require("./controllers/admin.testblabla")(app);
+require("./controllers/admin.customer")(app);
+require("./controllers/admin.customer.addnew")(app);
 
 //require("./controllers/viewfile-modal")(app);
 //require("./controllers/roles")(app);
@@ -66,7 +69,7 @@ require("./customs/dz-custom")(app, Dropzone);
 Dropzone.call(this);*/
 
 require("./directives/bootstrap-select-addon")(app);
-},{"./constants/logoforprint":2,"./constants/variable":3,"./controllers/account.profiles":4,"./controllers/godhands":5,"./controllers/home":6,"./controllers/kosts.index":7,"./controllers/kosts.newsales":8,"./controllers/login-modal":9,"./controllers/main":10,"./controllers/pages.dashboard":11,"./controllers/pages.login":12,"./controllers/pages.orders.order-index":13,"./customs/sidebar-affix":14,"./customs/sticky-button":15,"./directives/bootstrap-select-addon":16,"./init":17,"angular":25,"angular-cookies":19,"angular-resource":21,"angular-route":23}],2:[function(require,module,exports){
+},{"./constants/logoforprint":2,"./constants/variable":3,"./controllers/account.profiles":4,"./controllers/admin.customer":6,"./controllers/admin.customer.addnew":5,"./controllers/admin.testblabla":7,"./controllers/godhands":8,"./controllers/home":9,"./controllers/kosts.index":10,"./controllers/kosts.newsales":11,"./controllers/login-modal":12,"./controllers/main":13,"./controllers/pages.dashboard":14,"./controllers/pages.login":15,"./controllers/pages.orders.order-index":16,"./customs/sidebar-affix":17,"./customs/sticky-button":18,"./directives/bootstrap-select-addon":19,"./init":20,"angular":28,"angular-cookies":22,"angular-resource":24,"angular-route":26}],2:[function(require,module,exports){
 module.exports = function(app){
 	app.logoforprint = ''
 	+'<svg style="width:100%;height:inherit;" viewBox="0 0 578 133">'
@@ -85,7 +88,7 @@ module.exports = function(app){
 }
 },{}],3:[function(require,module,exports){
 module.exports = function(app){
-	$public_path = '/rahayudg/public/';
+	$public_path = '/rahayu/public/';
 	//$public_path = 'http://www.jakartabrosur.com/';
 	//$public_path = '/';
 
@@ -164,6 +167,248 @@ module.exports = function(app){
 	]);
 };
 },{}],5:[function(require,module,exports){
+module.exports = function(app){
+	app.controller('AdmCustomeraddnewmodalController', ['$scope', '$http', 'API_URL', 'AJAX_URL', 'BASE_URL', '$window',
+		function($scope, $http, API_URL, AJAX_URL, BASE_URL, $window){
+
+			$scope.savenewcustomer = function(){
+
+				$http({
+					method: "POST",
+					url: AJAX_URL+"customer/store",
+					data: {
+						"customertypeID": $scope.newcustomer.customertype,
+						"companyID": $scope.newcustomer.company,
+						"addressID": $scope.newcustomer.address,
+						"name": $scope.newcustomer.name,
+						"phone": $scope.newcustomer.phone,
+						"phone2": $scope.newcustomer.phone2,
+						"phone3": $scope.newcustomer.phone3,
+						"email": $scope.newcustomer.email,
+						"cardnumber": $scope.newcustomer.cardnumber,
+						"cardUID": $scope.newcustomer.cardUID,
+					}
+				})
+			}
+
+			$scope.updatecustomer = function(){
+
+				$http({
+					method: "POST",
+					url: AJAX_URL+"customer/update",
+					data: {
+						"customertypeID": $scope.newcustomer.customertype,
+						"companyID": $scope.newcustomer.company,
+						"addressID": $scope.newcustomer.address,
+						"name": $scope.newcustomer.name,
+						"phone": $scope.newcustomer.phone,
+						"phone2": $scope.newcustomer.phone2,
+						"phone3": $scope.newcustomer.phone3,
+						"email": $scope.newcustomer.email,
+						"cardnumber": $scope.newcustomer.cardnumber,
+						"cardUID": $scope.newcustomer.cardUID,
+					}
+				}).then(function(response){
+					if(response.data!=null){
+						if(response.data instanceof Object){
+							$scope.newcustomer = response.data;
+						}
+					}
+				}, function(error){
+					//error
+					console.log(error);
+				});
+			}
+
+
+		}
+	]);
+}
+},{}],6:[function(require,module,exports){
+module.exports = function(app){
+	app.controller('AdmCustomerController', ['$scope', '$http', 'API_URL', 'AJAX_URL', 'BASE_URL', '$window',
+		function($scope, $http, API_URL, AJAX_URL, BASE_URL, $window){
+			$scope.customers = [];
+			$scope.customertypes = [];
+			$scope.companies = [];
+			$scope.addresses = [];
+			$scope.customer = [];
+
+			$scope.newcustomer = {
+				"customertype" : null,
+				"company" : null,
+				"address" : null,
+				"name" : "",
+				"phone" : "",
+				"phone2" : "",
+				"phone3" : "",
+				"email" : "",
+				"cardnumber" : "",
+				"cardUID" : ""
+			};
+
+			$scope.deletecustomer = function($customer){
+
+				$http({
+					method: "POST",
+					url: AJAX_URL+"customer/delete",
+					data: {
+						"customertypeID": $customer.customertype,
+						"companyID": $customer.company,
+						"addressID": $customer.address,
+						"name": $customer.name,
+						"phone": $customer.phone,
+						"phone2": $customer.phone2,
+						"phone3": $customer.phone3,
+						"email": $customer.email,
+						"cardnumber": $customer.cardnumber,
+						"cardUID": $customer.cardUID,
+					}
+				})
+			}
+
+			$scope.initData = function($customers){
+				$scope.customers = JSON.parse($customers);
+			}
+
+			$scope.showupdatemodal = function($customer){
+				$("#modal-admcustomerupdate").modal('show');
+
+				$http({
+					method: "GET",
+					url:    AJAX_URL+"customertypes" 
+				}).then(function(response){
+					if(response.data!=null){
+						if(response.data instanceof Array){
+							$scope.customertypes = response.data;
+
+							if($scope.customertypes.length>0){
+								$scope.newcustomer.customertype = $scope.customertypes[0];
+							}
+						}
+					}
+				}, function(error){
+					//error
+					console.log(error);
+				});
+
+				$http({
+					method: "GET",
+					url:    AJAX_URL+"companies" 
+				}).then(function(response){
+					if(response.data!=null){
+						if(response.data instanceof Array){
+							$scope.companies = response.data;
+							if($scope.companies.length>0){
+								$scope.newcustomer.company = $scope.companies[0];
+							}
+						}
+					}
+				}, function(error){
+					//error
+					console.log(error);
+				});
+
+				$http({
+					method: "GET",
+					url:    AJAX_URL+"addresses" 
+				}).then(function(response){
+					if(response.data!=null){
+						if(response.data instanceof Array){
+							$scope.addresses = response.data;
+
+							if($scope.addresses.length>0){
+								$scope.newcustomer.address = $scope.addresses[0]
+								
+							}
+						}
+					}
+				}, function(error){
+					//error
+					console.log(error);
+				});
+
+				$scope.newcustomer = $customer;
+			}
+
+			$scope.showaddnewmodal = function(){
+				$("#modal-admcustomeraddnew").modal('show');
+				
+				$http({
+					method: "GET",
+					url:    AJAX_URL+"customertypes" 
+				}).then(function(response){
+					if(response.data!=null){
+						if(response.data instanceof Array){
+							$scope.customertypes = response.data;
+
+							if($scope.customertypes.length>0){
+								$scope.newcustomer.customertype = $scope.customertypes[0];
+							}
+						}
+					}
+				}, function(error){
+					//error
+					console.log(error);
+				});
+
+				$http({
+					method: "GET",
+					url:    AJAX_URL+"companies" 
+				}).then(function(response){
+					if(response.data!=null){
+						if(response.data instanceof Array){
+							$scope.companies = response.data;
+							if($scope.companies.length>0){
+								$scope.newcustomer.company = $scope.companies[0];
+							}
+						}
+					}
+				}, function(error){
+					//error
+					console.log(error);
+				});
+
+				$http({
+					method: "GET",
+					url:    AJAX_URL+"addresses" 
+				}).then(function(response){
+					if(response.data!=null){
+						if(response.data instanceof Array){
+							$scope.addresses = response.data;
+
+							if($scope.addresses.length>0){
+								$scope.newcustomer.address = $scope.addresses[0]
+								
+							}
+						}
+					}
+				}, function(error){
+					//error
+					console.log(error);
+				});
+			}
+
+
+		}
+	]);
+}
+},{}],7:[function(require,module,exports){
+module.exports = function(app){
+	app.controller('AdmTestblablaController', ['$scope', '$http', 'API_URL', 'AJAX_URL', 'BASE_URL', '$window',
+		function($scope, $http, API_URL, AJAX_URL, BASE_URL, $window){
+			$scope.customers = [];
+
+			$scope.initData = function($customers){
+				$scope.customers = JSON.parse($customers);
+				
+			}
+
+
+		}
+	]);
+}
+},{}],8:[function(require,module,exports){
 module.exports = function(app){
 	app.controller('HandOfGod', ['$timeout', '$scope', '$http', 'API_URL', 'BASE_URL', 'AJAX_URL', '$window', '$sce',
 		function($timeout, $scope, $http, API_URL, BASE_URL, AJAX_URL, $window, $sce){
@@ -833,7 +1078,7 @@ module.exports = function(app){
 		}
 	]);
 }
-},{}],6:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = function(app){
 	app.controller('HomePageController', ['$scope', '$http', 'API_URL', 'BASE_URL', '$window',
 		function($scope, $http, API_URL, BASE_URL, $window){
@@ -975,7 +1220,7 @@ module.exports = function(app){
 		}
 	]);
 };
-},{}],7:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = function(app){
 	app.controller('AdmKostController', ['$scope', '$http', 'API_URL', 'AJAX_URL', 'BASE_URL', '$window',
 		function($scope, $http, API_URL, AJAX_URL, BASE_URL, $window){
@@ -991,7 +1236,7 @@ module.exports = function(app){
 					$item.created_at = $scope.makeDateTime($item.created_at);
 					$item.updated_at = $scope.makeDateTime($item.updated_at);
 					$.each($item.kostsalesheader, function($index2, $item2){
-						$item2.starttime = $scope.makeDate($item2.starttime);
+						$item2.starttime = $scope. makeDate($item2.starttime);
 						$item2.endtime = $scope.makeDate($item2.endtime);
 						$item2.paid_at = $scope.makeDateTime($item2.paid_at);
 					});
@@ -1062,7 +1307,7 @@ module.exports = function(app){
 		}
 	]);
 }
-},{}],8:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = function(app){
 	app.controller('KostNewsalesController', ['$scope', '$http', 'API_URL', 'AJAX_URL', 'BASE_URL', '$window',
 		function($scope, $http, API_URL, AJAX_URL, BASE_URL, $window){
@@ -1183,6 +1428,7 @@ module.exports = function(app){
 						{
 							if(response.data.constructor === Array)
 							{
+								
 								$.each($scope.rooms, function($i, $ii){
 									if($ii.id == $scope.selectedroom.id){
 										$ii.kostsalesheader.push(response.data[0]);
@@ -1214,7 +1460,7 @@ module.exports = function(app){
 		}
 	]);
 }
-},{}],9:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = function(app){
 	/*app.controller('OffsetPricing', ['$scope', '$http', 'ProductService', "$routeParams", 'API_URL',
 		function($scope, $http, ProductService, $routeParams, API_URL){*/
@@ -1400,7 +1646,7 @@ module.exports = function(app){
 							$scope.alertshow = false;
 							$scope.error = response;
 						});
-					}
+					} 
 					console.log($scope.error);
 				}
 			}
@@ -1422,7 +1668,7 @@ module.exports = function(app){
 		}
 	]);
 }
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = function(app){
 
 	$(function () {
@@ -1438,7 +1684,7 @@ module.exports = function(app){
 	})
 
 }
-},{}],11:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = function(app){
 	app.controller('PagesDashboardController', ['$scope', '$http', 'API_URL', 'BASE_URL', '$window',
 		function($scope, $http, API_URL, BASE_URL, $window){
@@ -1450,7 +1696,7 @@ module.exports = function(app){
 		}
 	]);
 };
-},{}],12:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = function(app){
 	app.controller('PagesLoginController', ['$scope', '$http', 'API_URL', 'AJAX_URL', 'BASE_URL', '$window',
 		function($scope, $http, API_URL, AJAX_URL, BASE_URL, $window){
@@ -1507,7 +1753,7 @@ module.exports = function(app){
 		}
 	]);
 };
-},{}],13:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = function(app){
 	app.controller('PageOrderIndexController', ['$timeout', '$scope', '$http', 'API_URL', 'BASE_URL', '$window',
 		function($timeout, $scope, $http, API_URL, BASE_URL, $window){
@@ -1784,7 +2030,7 @@ module.exports = function(app){
 		}
 	]);
 };
-},{}],14:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = function(app){
 	$(window).on('scroll', function(event) {
 	    var scrollValue = $(window).scrollTop();
@@ -1825,7 +2071,7 @@ module.exports = function(app){
 		}
 	});
 }
-},{}],15:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = function(app){
 	$(window).on('scroll', function(event) {
 	    var scrollValue = $(window).scrollTop();
@@ -1849,7 +2095,7 @@ module.exports = function(app){
 
 	});
 }
-},{}],16:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = function(app){
 	app.directive('pageRefresh', function($timeout) {
 		return {
@@ -1873,7 +2119,7 @@ module.exports = function(app){
 	   return bootDirective;
 	});
 }
-},{}],17:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports = angular.module('rahayudg', 
 	[
 		"ngRoute",
@@ -1887,7 +2133,7 @@ module.exports = angular.module('rahayudg',
         $interpolateProvider.endSymbol(']]');
     }
 )
-},{}],18:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -2211,11 +2457,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],19:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":18}],20:[function(require,module,exports){
+},{"./angular-cookies":21}],23:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -3080,11 +3326,11 @@ angular.module('ngResource', ['ng']).
 
 })(window, window.angular);
 
-},{}],21:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 require('./angular-resource');
 module.exports = 'ngResource';
 
-},{"./angular-resource":20}],22:[function(require,module,exports){
+},{"./angular-resource":23}],25:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -4155,11 +4401,11 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],23:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 require('./angular-route');
 module.exports = 'ngRoute';
 
-},{"./angular-route":22}],24:[function(require,module,exports){
+},{"./angular-route":25}],27:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -35928,8 +36174,8 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],25:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":24}]},{},[1]);
+},{"./angular":27}]},{},[1]);

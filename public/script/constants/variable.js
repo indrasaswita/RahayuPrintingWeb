@@ -1,5 +1,5 @@
 module.exports = function(app){
-	$public_path = '/rahayudg/public/';
+	$public_path = '/rahayu/public/';
 	//$public_path = 'http://www.jakartabrosur.com/';
 	//$public_path = '/';
 
