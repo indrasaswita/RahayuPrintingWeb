@@ -7,6 +7,21 @@ module.exports = function(app){
 			$scope.addresses = [];
 			$scope.customer = [];
 
+	 //  // PAGINATION
+  // $scope.currentPage = 1;
+  // $scope.itemsPerPage = 5;
+  // // Selection
+  // $scope.selected = undefined;
+
+  // $scope.pageChanged = function() {
+  //   console.log($scope.currentPage);
+  // };
+
+  // $scope.sortColumn = function(key) {
+  //   $scope.orderByField = key;
+  //   $scope.sortByDescending = !$scope.sortByDescending;
+  // }
+
 			$scope.newcustomer = {
 				"customertype" : null,
 				"company" : null,
