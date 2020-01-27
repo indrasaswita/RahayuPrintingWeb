@@ -20,7 +20,7 @@ class SeedCompaniesTable extends Migration
 			INSERT INTO companies VALUES ('4', '1', '1', 'Sponge Coral', 'Sponge Coral', '0215544887', '', now(), null);
 			INSERT INTO companies VALUES ('5', '1', '1', 'Patrick Coral', 'Patrick Coral', '021123456', '', now(), null);
 			INSERT INTO companies VALUES ('6', '1', '1', 'Jellyfish Hunt Club', 'Jellyfish Hunt Club', '0216548745', '', now(), null);
-
+			INSERT INTO companies VALUES ('7', '1', '2', 'Authorized Company', 'Auth.co', '02121124', '', now(), null);
 
 		");
 	}

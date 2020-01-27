@@ -23,7 +23,7 @@ require("./controllers/pages.dashboard")(app);
 require("./controllers/pages.orders.order-index")(app);
 require("./controllers/kosts.index")(app);
 require("./controllers/kosts.newsales")(app);
-require("./controllers/admin.testblabla")(app);
+//require("./controllers/admin.testblabla")(app);
 require("./controllers/admin.customer")(app);
 require("./controllers/admin.customer.addnew")(app);
 

@@ -19,6 +19,10 @@ class Customer extends Model
 		return $this->belongsTo('App\Company', 'companyID')->with('parentcompany');
 	}
 
+	public function address(){
+		return $this->belongsTo('App\Address','addressID');
+	}
+	
 	public function kostsalescustomer(){
 		return $this->hasMany('App\Kostsalescustomer', 'customerID')->with('kostsalesheader');
 	}

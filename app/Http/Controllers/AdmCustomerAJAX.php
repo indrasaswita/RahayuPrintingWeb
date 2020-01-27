@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Customer;
+use App\Company;
+use App\Address;
+use App\Customertype;
 
 class AdmCustomerAJAX extends Controller
 {
@@ -22,11 +25,11 @@ class AdmCustomerAJAX extends Controller
    	$customer->addressID=$data['addressID']['id'];
    	$customer->name=$data['name'];
    	$customer->phone = $data["phone"];
-		$customer->phone2 = $data["phone2"];
-		$customer->phone3 = $data["phone3"];
-		$customer->email=$data['email'];
-		$customer->cardnumber=$data['cardnumber'];
-		$customer->cardUID=$data['cardUID'];
+				$customer->phone2 = $data["phone2"];
+				$customer->phone3 = $data["phone3"];
+				$customer->email=$data['email'];
+				$customer->cardnumber=$data['cardnumber'];
+				$customer->cardUID=$data['cardUID'];
 
 		$result = $customer->save();
 
@@ -48,33 +51,37 @@ class AdmCustomerAJAX extends Controller
    	$customer->addressID=$data['addressID']['id'];
    	$customer->name=$data['name'];
    	$customer->phone = $data["phone"];
-		$customer->phone2 = $data["phone2"];
-		$customer->phone3 = $data["phone3"];
-		$customer->email=$data['email'];
-		$customer->cardnumber=$data['cardnumber'];
-		$customer->cardUID=$data['cardUID'];
+				$customer->phone2 = $data["phone2"];
+				$customer->phone3 = $data["phone3"];
+				$customer->email=$data['email'];
+				$customer->cardnumber=$data['cardnumber'];
+				$customer->cardUID=$data['cardUID'];
 
-		$result = $customer->save(); 
-		if($result){
-					$customer = Customer::where('email',$data['email'])->first();
+				$result = $customer->save(); 
+				if($result){
+							$customer = Customer::where('email',$data['email'])->first();
 
-					return $customer; }
-				else
-					return "failed";
-   }
+							$customer['customertypeID']= $data['customertypeID']['id'];
+							$customer['companyID']  = $data['companyID']['id'];
+							$customer['addressID']= $data['addressID']['id'];
+							return $customer; 
+						}
+						else
+							return "failed";
+		   }
 
-   public function deletecustomer(Request $request){
+		   public function deletecustomer(Request $request){
 
-   	$data = $request->all();
+		   	$data = $request->all();
 
-   	$customer = Customer::where('email',$data['email'])->first();
+		   	$customer = Customer::where('email',$data['email'])->first();
 
-		$result = $customer->delete();
+				$result = $customer->delete();
 
-		if($result)
-					return $customer;
-				else
-					return "failed";
+				if($result)
+							return $customer;
+						else
+							return "failed";
 
-   }
+		   }
 }

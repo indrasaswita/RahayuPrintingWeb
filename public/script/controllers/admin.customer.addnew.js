@@ -19,7 +19,12 @@ module.exports = function(app){
 						"cardnumber": $scope.newcustomer.cardnumber,
 						"cardUID": $scope.newcustomer.cardUID,
 					}
-				})
+				}).success(function(response)
+					{
+						console.log(response.data);
+						$scope.newcustomer = response.data;
+					}
+				).error(function(response){})
 			}
 
 			$scope.updatecustomer = function(){
@@ -39,16 +44,12 @@ module.exports = function(app){
 						"cardnumber": $scope.newcustomer.cardnumber,
 						"cardUID": $scope.newcustomer.cardUID,
 					}
-				}).then(function(response){
-					if(response.data!=null){
-						if(response.data instanceof Object){
-							$scope.newcustomer = response.data;
-						}
+				}).success(function(response)
+					{
+						console.log(response.data);
+						$scope.newcustomer = response.data;
 					}
-				}, function(error){
-					//error
-					console.log(error);
-				});
+				).error(function(response){})
 			}
 
 

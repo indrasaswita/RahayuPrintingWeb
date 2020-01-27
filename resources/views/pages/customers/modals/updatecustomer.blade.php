@@ -45,10 +45,7 @@
 						Email
 						<input class="form-control" type="text" ng-model="newcustomer.email" placeholder="entry your email">
 					</div>
-					<!-- <div>
-						Card Number
-						<input class="form-control" type="text" ng-model="newcustomer.cardnumber" placeholder="Card Number">
-					</div> -->
+
 					<div>
 						Card Number
 						<input class="form-control" type="text" ng-model="newcustomer.cardnumber" placeholder="Card Number">
@@ -58,16 +55,13 @@
 						<input class="form-control" type="text" ng-model="newcustomer.cardUID" placeholder="Card UID">
 					</div>
 
-					<div class="error" ng-if="errormessage.length>0">
-						[[errormessage]]
-					</div>
+
 					<div class="actions">
 						<button class="btn btn-sm btn-success" ng-click="updatecustomer()" >
 							<i class="fas fa-save fa-fw"></i>
 							Simpan
 						</button>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							Cancel
+						<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Batal
 						</button>
 					</div>
 				</div>
